@@ -27,7 +27,7 @@ public class Earthquake {
      * earthquake happened
      */
 
-    public Earthquake (String earthquakeMagnitude, String earthquakeLocation, String earthquakeDate, long timeInMilliseconds) {
+    public Earthquake (String earthquakeMagnitude, String earthquakeLocation, long timeInMilliseconds) {
         //Initializing the variables
         mEarthquakeMagnitude = earthquakeMagnitude;
         mEarthquakeLocation = earthquakeLocation;
