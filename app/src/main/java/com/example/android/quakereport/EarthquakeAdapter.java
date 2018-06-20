@@ -82,14 +82,13 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake>{
         magnitudeTextView.setText(formattedMagnitude);
 
 
-//        // Set the proper background color on the magnitude circle.
-//        // Fetch the background from the TextView, which is a GradientDrawable.
-//        GradientDrawable magnitudeCircle = (GradientDrawable) magnitudeView.getBackground();
-//        // Get the appropriate background color based on the current earthquake magnitude
-//        int magnitudeColor = getMagnitudeColor(currentEarthquake.getMagnitude());
-//        // Set the color on the magnitude circle
-//        magnitudeCircle.setColor(magnitudeColor);
-
+        // Set the proper background color on the magnitude circle.
+        // Fetch the background from the TextView, which is a GradientDrawable.
+        GradientDrawable magnitudeCircle = (GradientDrawable) magnitudeTextView.getBackground();
+        // Get the appropriate background color based on the current earthquake magnitude
+        int magnitudeColor = getMagnitudeColor(currentEarthquake.getEarthquakeMagnitude());
+        // Set the color on the magnitude circle
+        magnitudeCircle.setColor(magnitudeColor);
 
 
         // Get the original location string from the Earthquake object,
@@ -157,83 +156,12 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake>{
         timeView.setText(formattedTime);
 
 
+
         //Return the whole listItem layout (containing 4 TextViews)
         //so that it can be shown in the ListView
         return listItemView;
 
     }
-
-//    /**
-//     * First convert the time in milliseconds into a Date object by calling the Date constructor.
-//     */
-//
-//    long timeInMilliseconds = 1454124312220L;
-//    Date dateObject = new Date(timeInMilliseconds);
-//
-//    /**
-//     * Then we can initialize a SimpleDateFormat instance and configure it to provide a more
-//     * readable representation according to the given format.
-//     */
-//
-//    SimpleDateFormat dateFormatter = new SimpleDateFormat("MMM DD, yyyy");
-//    String dateToDisplay = dateFormatter.format(dateObject);
-
-
-
-//    /**
-//     * Return the color for the magnitude circle based on the intensity of the earthquake.
-//     *
-//     * @param magnitude of the earthquake
-//     */
-//    private int getMagnitudeColor(double magnitude) {
-//        int magnitudeColorResourceId;
-//        int magnitudeFloor = (int) Math.floor(magnitude);
-//        switch (magnitudeFloor) {
-//            case 0:
-//            case 1:
-//                magnitudeColorResourceId = R.color.magnitude1;
-//                break;
-//            case 2:
-//                magnitudeColorResourceId = R.color.magnitude2;
-//                break;
-//            case 3:
-//                magnitudeColorResourceId = R.color.magnitude3;
-//                break;
-//            case 4:
-//                magnitudeColorResourceId = R.color.magnitude4;
-//                break;
-//            case 5:
-//                magnitudeColorResourceId = R.color.magnitude5;
-//                break;
-//            case 6:
-//                magnitudeColorResourceId = R.color.magnitude6;
-//                break;
-//            case 7:
-//                magnitudeColorResourceId = R.color.magnitude7;
-//                break;
-//            case 8:
-//                magnitudeColorResourceId = R.color.magnitude8;
-//                break;
-//            case 9:
-//                magnitudeColorResourceId = R.color.magnitude9;
-//                break;
-//            default:
-//                magnitudeColorResourceId = R.color.magnitude10plus;
-//                break;
-//        }
-//
-//        return ContextCompat.getColor(getContext(), magnitudeColorResourceId);
-//    }
-//
-//    /**
-//     * Return the formatted magnitude string showing 1 decimal place (i.e. "3.2")
-//     * from a decimal magnitude value.
-//     */
-//    private String formatMagnitude(double magnitude) {
-//        DecimalFormat magnitudeFormat = new DecimalFormat("0.0");
-//        return magnitudeFormat.format(magnitude);
-//    }
-
 
 
     /**
@@ -259,6 +187,51 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake>{
     private String formatMagnitude(double magnitude) {
         DecimalFormat magnitudeFormat = new DecimalFormat("0.0");
         return magnitudeFormat.format(magnitude);
+    }
+
+    /**
+     * Return the color for the magnitude circle based on the intensity of the earthquake.
+     *
+     * @param magnitude of the earthquake
+     */
+    private int getMagnitudeColor(double magnitude) {
+        int magnitudeColorResourceId;
+        int magnitudeFloor = (int) Math.floor(magnitude);
+        switch (magnitudeFloor) {
+            case 0:
+            case 1:
+                magnitudeColorResourceId = R.color.magnitude1;
+                break;
+            case 2:
+                magnitudeColorResourceId = R.color.magnitude2;
+                break;
+            case 3:
+                magnitudeColorResourceId = R.color.magnitude3;
+                break;
+            case 4:
+                magnitudeColorResourceId = R.color.magnitude4;
+                break;
+            case 5:
+                magnitudeColorResourceId = R.color.magnitude5;
+                break;
+            case 6:
+                magnitudeColorResourceId = R.color.magnitude6;
+                break;
+            case 7:
+                magnitudeColorResourceId = R.color.magnitude7;
+                break;
+            case 8:
+                magnitudeColorResourceId = R.color.magnitude8;
+                break;
+            case 9:
+                magnitudeColorResourceId = R.color.magnitude9;
+                break;
+            default:
+                magnitudeColorResourceId = R.color.magnitude10plus;
+                break;
+        }
+
+        return ContextCompat.getColor(getContext(), magnitudeColorResourceId);
     }
 
 }
