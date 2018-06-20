@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.text.DecimalFormat;
 
 /**
  * {@link EarthquakeAdapter} knows how to create a list item layout for each earthquake
@@ -74,8 +75,11 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake>{
         TextView magnitudeTextView = listItemView.findViewById(R.id.magnitude_tv);
         //Get the Earthquake from the current Earthquake object and set this text
         //on the magnitudeTextView
-        magnitudeTextView.setText(currentEarthquake.getEarthquakeMagnitude());
-
+//        magnitudeTextView.setText(currentEarthquake.getEarthquakeMagnitude());
+        // Format the magnitude to show 1 decimal place
+        String formattedMagnitude = formatMagnitude(currentEarthquake.getEarthquakeMagnitude());
+        // Display the magnitude of the current earthquake in that TextView
+        magnitudeTextView.setText(formattedMagnitude);
 
 
 //        // Set the proper background color on the magnitude circle.
@@ -120,12 +124,12 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake>{
         }
 
         // Find the TextView with view ID location
-        TextView primaryLocationView = (TextView) listItemView.findViewById(R.id.primary_location);
+        TextView primaryLocationView = listItemView.findViewById(R.id.primary_location);
         // Display the location of the current earthquake in that TextView
         primaryLocationView.setText(primaryLocation);
 
         // Find the TextView with view ID location offset
-        TextView locationOffsetView = (TextView) listItemView.findViewById(R.id.location_offset);
+        TextView locationOffsetView = listItemView.findViewById(R.id.location_offset);
         // Display the location offset of the current earthquake in that TextView
         locationOffsetView.setText(locationOffset);
 
@@ -246,6 +250,15 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake>{
     private String formatTime(Date dateObject) {
         SimpleDateFormat timeFormat = new SimpleDateFormat("h:mm a");
         return timeFormat.format(dateObject);
+    }
+
+    /**
+     * Return the formatted magnitude string showing 1 decimal place (i.e. "3.2")
+     * from a decimal magnitude value.
+     */
+    private String formatMagnitude(double magnitude) {
+        DecimalFormat magnitudeFormat = new DecimalFormat("0.0");
+        return magnitudeFormat.format(magnitude);
     }
 
 }
